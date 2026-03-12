@@ -23,4 +23,6 @@
   :components ((:module "test"
                 :components ((:file "test-merkle"))))
   :perform (test-op (op c)
-             (uiop:symbol-call :cl-merkle-trees.test :run-tests)))
+             (let ((result (uiop:symbol-call :cl-merkle-trees.test :run-tests)))
+               (unless result
+                 (error "Tests failed")))))
